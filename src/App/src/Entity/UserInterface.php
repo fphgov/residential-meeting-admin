@@ -6,14 +6,9 @@ namespace App\Entity;
 
 use App\Interfaces\EntityActiveInterface;
 use App\Interfaces\EntityInterface;
-use Doctrine\Common\Collections\Collection;
 
 interface UserInterface extends EntityInterface, EntityActiveInterface
 {
-    public function setUsername(string $username): void;
-
-    public function getUsername(): string;
-
     public function setFirstname(string $firstname): void;
 
     public function getFirstname(): string;

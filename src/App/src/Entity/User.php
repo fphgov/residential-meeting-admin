@@ -24,13 +24,6 @@ class User implements UserInterface
     use EntityTrait;
 
     /**
-     * @ORM\Column(name="username", type="string")
-     *
-     * @Groups({"profile"})
-     */
-    private string $username;
-
-    /**
      * @ORM\Column(name="firstname", type="string")
      *
      * @Groups({"list", "detail", "full_detail", "profile"})
@@ -74,16 +67,6 @@ class User implements UserInterface
      * @Ignore()
      */
     protected DateTime $createdAt;
-
-    public function setUsername(string $username): void
-    {
-        $this->username = $username;
-    }
-
-    public function getUsername(): string
-    {
-        return $this->username;
-    }
 
     public function setFirstname(string $firstname): void
     {

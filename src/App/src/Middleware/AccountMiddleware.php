@@ -30,7 +30,7 @@ class AccountMiddleware implements MiddlewareInterface
             $account = $this->accountService->getAccount($authCode);
         } catch (Exception $e) {
             return new JsonResponse([
-                'message' => 'No authentication',
+                'error' => 'No authentication',
             ], 401);
         }
 

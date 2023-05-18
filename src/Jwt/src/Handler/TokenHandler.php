@@ -70,7 +70,6 @@ class TokenHandler implements RequestHandlerInterface
         }
 
         $userData = [
-            'username'  => $user->getUsername(),
             'firstname' => $user->getFirstname(),
             'lastname'  => $user->getLastname(),
             'email'     => $user->getEmail(),
@@ -87,7 +86,7 @@ class TokenHandler implements RequestHandlerInterface
     private function badAuthentication(): JsonResponse
     {
         return new JsonResponse([
-            'message' => 'Hibás bejelentkezési adatok vagy inaktív fiók',
+            'error' => 'Hibás bejelentkezési adatok vagy inaktív fiók',
         ], 400);
     }
 

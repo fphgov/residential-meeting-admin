@@ -40,11 +40,11 @@ class Account implements AccountInterface
     private ?string $zipCode = null;
 
     /**
-     * @ORM\Column(name="voted", type="boolean", nullable=false)
+     * @ORM\Column(name="full_name", type="string", length=255, nullable=false)
      *
      * @Groups({"full_detail"})
      */
-    private bool $voted = false;
+    private string $fullName;
 
     public function getId(): int
     {
@@ -66,16 +66,6 @@ class Account implements AccountInterface
         return $this->authCode;
     }
 
-    public function setVoted(bool $voted): void
-    {
-        $this->voted = $voted;
-    }
-
-    public function getVoted(): bool
-    {
-        return $this->voted;
-    }
-
     public function getZipCode(): ?string
     {
         return $this->zipCode;
@@ -84,5 +74,15 @@ class Account implements AccountInterface
     public function setZipCode(?string $zipCode = null): void
     {
         $this->zipCode = $zipCode;
+    }
+
+    public function getFullName(): string
+    {
+        return $this->fullName;
+    }
+
+    public function setFullName(string $fullName): void
+    {
+        $this->fullName = $fullName;
     }
 }

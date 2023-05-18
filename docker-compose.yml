@@ -3,7 +3,7 @@ version: '3.5'
 services:
   db:
     image: mysql:5.7
-    container_name: residential_meeting_db
+    container_name: residential_meeting_admin_db
     command: --explicit_defaults_for_timestamp --default-authentication-plugin=mysql_native_password --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci --event_scheduler=ON
     env_file: .env
     ports:
@@ -18,7 +18,7 @@ services:
     build:
       context: .
       dockerfile: docker/config/webapp/Dockerfile
-    container_name: residential_meeting_webapp
+    container_name: residential_meeting_admin_webapp
     expose:
       - 9004
     volumes:
@@ -40,7 +40,7 @@ services:
 
   nginx:
     image: fphgov/nginx
-    container_name: residential_meeting_nginx
+    container_name: residential_meeting_admin_nginx
     networks:
       - default
     ports:

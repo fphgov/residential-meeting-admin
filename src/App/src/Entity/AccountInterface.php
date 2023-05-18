@@ -12,11 +12,11 @@ interface AccountInterface extends EntitySimpleInterface
 
     public function geAuthCode(): string;
 
-    public function setVoted(bool $voted): void;
-
-    public function getVoted(): bool;
-
     public function getZipCode(): ?string;
 
     public function setZipCode(?string $zipCode): void;
+
+    public function getFullName(): string;
+
+    public function setFullName(string $fullName): void;
 }

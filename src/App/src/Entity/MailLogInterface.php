@@ -8,10 +8,6 @@ use App\Interfaces\EntityInterface;
 
 interface MailLogInterface extends EntityInterface
 {
-    public function getNotification(): ?NotificationInterface;
-
-    public function setNotification(?NotificationInterface $notification = null): void;
-
     public function setMessageId(string $messageId): void;
 
     public function getMessageId(): string;

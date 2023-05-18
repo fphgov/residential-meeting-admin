@@ -55,10 +55,6 @@ final class MailQueueService implements MailQueueServiceInterface
         $mailQueue->setCreatedAt($date);
         $mailQueue->setUpdatedAt($date);
 
-        if ($notification instanceof Notification) {
-            $mailQueue->setNotification($notification);
-        }
-
         return $mailQueue;
     }
 
@@ -88,7 +84,7 @@ final class MailQueueService implements MailQueueServiceInterface
         $mailAdapter = $mailQueue->getMailAdapter();
 
         try {
-            $this->createMailLog($mailQueue->getNotification(), $mailAdapter);
+            $this->createMailLog($mailAdapter);
 
             $mailAdapter->send();
 
@@ -106,7 +102,7 @@ final class MailQueueService implements MailQueueServiceInterface
         }
     }
 
-    private function createMailLog(?NotificationInterface $notification, MailAdapterInterface $mailAdapter): void
+    private function createMailLog(MailAdapterInterface $mailAdapter): void
     {
         $date = new DateTime();
 
@@ -115,10 +111,6 @@ final class MailQueueService implements MailQueueServiceInterface
         $mailLog->setMessageId($mailAdapter->getMessageId());
         $mailLog->setCreatedAt($date);
         $mailLog->setUpdatedAt($date);
-
-        if ($notification instanceof Notification) {
-            $mailLog->setNotification($notification);
-        }
 
         $this->em->persist($mailLog);
     }

@@ -70,12 +70,12 @@ class Account implements AccountInterface
         $this->id = $id;
     }
 
-    public function seAuthCode(string $authCode): void
+    public function setAuthCode(string $authCode): void
     {
         $this->authCode = $authCode;
     }
 
-    public function geAuthCode(): string
+    public function getAuthCode(): string
     {
         return $this->authCode;
     }

@@ -8,9 +8,9 @@ use App\Interfaces\EntitySimpleInterface;
 
 interface AccountInterface extends EntitySimpleInterface
 {
-    public function seAuthCode(string $authCode): void;
+    public function setAuthCode(string $authCode): void;
 
-    public function geAuthCode(): string;
+    public function getAuthCode(): string;
 
     public function getZipCode(): string;
 

@@ -18,4 +18,10 @@ return static function (
         // App\Middleware\UserMiddleware::class,
         App\Handler\Account\SearchHandler::class
     ], 'admin.api.account.search');
+
+    $app->post('/admin/api/account/send', [
+        // Jwt\Handler\JwtAuthMiddleware::class,
+        // App\Middleware\UserMiddleware::class,
+        App\Handler\Account\SendHandler::class
+    ], 'admin.api.account.send');
 };

@@ -37,6 +37,7 @@ class ConfigProvider
             'delegators' => [],
             'factories'  => [
                 Handler\Account\SearchHandler::class     => Handler\Account\SearchHandlerFactory::class,
+                Handler\Account\SendHandler::class       => Handler\Account\SendHandlerFactory::class,
                 Handler\Setting\GetHandler::class        => Handler\Setting\GetHandlerFactory::class,
                 Service\AccountServiceInterface::class   => Service\AccountServiceFactory::class,
                 Service\MailQueueServiceInterface::class => Service\MailQueueServiceFactory::class,
@@ -55,6 +56,7 @@ class ConfigProvider
             ],
             'invokables' => [
                 InputFilter\AccountSearchFilter::class => InputFilter\AccountSearchFilter::class,
+                InputFilter\AccountSendFilter::class   => InputFilter\AccountSendFilter::class,
             ],
         ];
     }

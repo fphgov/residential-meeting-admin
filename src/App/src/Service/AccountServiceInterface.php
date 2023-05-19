@@ -13,4 +13,6 @@ interface AccountServiceInterface
         ?string $address,
         ?string $houseNumber
     ): array;
+
+    public function sendAccounts(string $id, string $email): void;
 }

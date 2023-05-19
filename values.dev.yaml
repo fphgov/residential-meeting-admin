@@ -78,9 +78,9 @@ env:
   - name: DB_PORT
     value: "3307"
   - name: DB_DATABASE
-    value: residential_meeting
+    value: residential_meeting_admin
   - name: DB_USER
-    value: residential_meeting
+    value: residential_meeting_admin
   - name: DB_CHARSET
     value: utf8mb4
   - name: APP_NOTIFICATION_FREQUENCY

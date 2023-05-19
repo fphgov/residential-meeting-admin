@@ -23,27 +23,11 @@ class MailQueue implements MailQueueInterface
     use EntityTrait;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Notification")
-     * @ORM\JoinColumn(name="notification_id", referencedColumnName="id", nullable=true)
-     */
-    private Notification|NotificationInterface|null $notification = null;
-
-    /**
      * @ORM\Column(name="mail_adapter", type="blob")
      *
      * @var resource|null
      */
     private $mailAdapter;
-
-    public function getNotification(): ?NotificationInterface
-    {
-        return $this->notification;
-    }
-
-    public function setNotification(?NotificationInterface $notification = null): void
-    {
-        $this->notification = $notification;
-    }
 
     public function setMailAdapter(MailAdapterInterface $mailAdapter): void
     {

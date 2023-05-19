@@ -18,14 +18,6 @@ class MailLog implements MailLogInterface
     use EntityTrait;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Notification")
-     * @ORM\JoinColumn(name="notification_id", referencedColumnName="id", nullable=true)
-     *
-     * @var NotificationInterface
-     */
-    private Notification|NotificationInterface|null $notification = null;
-
-    /**
      * @ORM\Column(name="message_id", type="string")
      *
      * @var string
@@ -38,16 +30,6 @@ class MailLog implements MailLogInterface
      * @var string
      */
     private $name;
-
-    public function getNotification(): ?NotificationInterface
-    {
-        return $this->notification;
-    }
-
-    public function setNotification(?NotificationInterface $notification = null): void
-    {
-        $this->notification = $notification;
-    }
 
     public function setMessageId(string $messageId): void
     {

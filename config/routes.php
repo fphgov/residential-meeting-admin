@@ -9,11 +9,19 @@ return static function (
 ): void {
     $app->get('/app/api/ping', App\Handler\PingHandler::class, 'app.api.ping');
 
-    $app->get('/app/api/options', [
-        App\Handler\Setting\GetHandler::class
-    ], 'app.api.options.get');
+    $app->post('/admin/api/login', [
+        Jwt\Handler\TokenHandler::class,
+    ], 'admin.api.login');
 
-    $app->post('/app/api/account/check', [
-        App\Handler\Account\CheckHandler::class
-    ], 'app.api.account.check');
+    $app->post('/admin/api/account/search', [
+        // Jwt\Handler\JwtAuthMiddleware::class,
+        // App\Middleware\UserMiddleware::class,
+        App\Handler\Account\SearchHandler::class
+    ], 'admin.api.account.search');
+
+    $app->post('/admin/api/account/send', [
+        // Jwt\Handler\JwtAuthMiddleware::class,
+        // App\Middleware\UserMiddleware::class,
+        App\Handler\Account\SendHandler::class
+    ], 'admin.api.account.send');
 };

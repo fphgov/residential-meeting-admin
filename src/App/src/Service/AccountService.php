@@ -5,8 +5,8 @@ declare(strict_types=1);
 namespace App\Service;
 
 use App\Entity\Account;
-use App\Entity\AccountInterface;
-use App\Exception\AuthCodeNotFoundException;
+use App\Entity\NotificationInterface;
+use App\Model\SimpleNotification;
 use App\Repository\AccountRepository;
 use App\Service\MailServiceInterface;
 use Doctrine\ORM\EntityManagerInterface;
@@ -29,16 +29,46 @@ final class AccountService implements AccountServiceInterface
         $this->accountRepository = $this->em->getRepository(Account::class);
     }
 
-    public function getAccount(string $authCode): AccountInterface
+    /** @var return \App\Entity\AccountInterface[] */
+    public function getAccounts(
+        string $zipCode,
+        string $name,
+        ?string $address,
+        ?string $houseNumber
+    ): array
     {
-        $account = $this->accountRepository->findOneBy([
-            'authCode' => $authCode,
-        ]);
+        $accounts = $this->accountRepository->findAccounts(
+            $zipCode,
+            $name,
+            $address,
+            $houseNumber
+        );
 
-        if (! $account) {
-            throw new AuthCodeNotFoundException('Unknow auth code ' . $authCode);
+        return $accounts;
+    }
+
+    public function sendAccounts(string $id, string $email): void
+    {
+        $account = $this->accountRepository->find($id);
+
+        if ($account) {
+            $notification = new SimpleNotification(
+                $id,
+                $email
+            );
+
+            $this->sendAuthCodeEmail($account, $notification);
         }
+    }
 
-        return $account;
+    private function sendAuthCodeEmail(Account $account, NotificationInterface $notification): void
+    {
+        $tplData = [
+            'infoMunicipality' => $this->config['app']['municipality'],
+            'infoEmail'        => $this->config['app']['email'],
+            'authCode'         => $account->getAuthCode(),
+        ];
+
+        $this->mailService->send('auth-code', $tplData, $notification);
     }
 }

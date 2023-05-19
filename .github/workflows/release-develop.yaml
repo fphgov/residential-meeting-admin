@@ -13,15 +13,15 @@ env:
   DOCKER_REGISTRY_URL: 'registry.dev.intra.fph.hu'
   DOCKER_PHP_BUILD_FILE: 'k8s/php/Dockerfile'
   DOCKER_NGINX_BUILD_FILE: 'k8s/nginx/Dockerfile'
-  DOCKER_PHP_IMAGE: 'docker/residential-meeting-php'
-  DOCKER_NGINX_IMAGE: 'docker/residential-meeting-nginx'
+  DOCKER_PHP_IMAGE: 'docker/residential-meeting-admin-php'
+  DOCKER_NGINX_IMAGE: 'docker/residential-meeting-admin-nginx'
   HELM_REPOSITORY_URL: 'nexus.dev.intra.fph.hu'
   HELM_REPOSITORY_NAME: 'helm'
   HELM_REPOSITORY_ALIAS: 'fph'
   HELM_CHART_NAME: 'php-nginx'
   HELM_RELEASE_NAME: 'backend'
   HELM_VALUES_FILE: 'values.dev.yaml'
-  APP_NAMESPACE: 'residential-meeting'
+  APP_NAMESPACE: 'residential-meeting-admin'
 
 
 jobs:

@@ -12,11 +12,19 @@ interface AccountInterface extends EntitySimpleInterface
 
     public function geAuthCode(): string;
 
-    public function getZipCode(): ?string;
+    public function getZipCode(): string;
 
-    public function setZipCode(?string $zipCode): void;
+    public function setZipCode(string $zipCode): void;
 
     public function getFullName(): string;
 
     public function setFullName(string $fullName): void;
+
+    public function getAddress(): string;
+
+    public function setAddress(string $address): void;
+
+    public function getHouseNumber(): string;
+
+    public function setHouseNumber(string $houseNumber): void;
 }

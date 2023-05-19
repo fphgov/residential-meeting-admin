@@ -28,23 +28,37 @@ class Account implements AccountInterface
     /**
      * @ORM\Column(name="auth_code", type="string", length=14)
      *
-     * @Groups({"full_detail", "profile"})
+     * @Groups({"full_detail"})
      */
     private string $authCode;
 
     /**
-     * @ORM\Column(name="zip_code", type="string", length=4, nullable=true)
+     * @ORM\Column(name="zip_code", type="string", length=4, nullable=false)
      *
-     * @Groups({"full_detail"})
+     * @Groups({"list", "full_detail"})
      */
-    private ?string $zipCode = null;
+    private string $zipCode;
 
     /**
      * @ORM\Column(name="full_name", type="string", length=255, nullable=false)
      *
-     * @Groups({"full_detail"})
+     * @Groups({"list", "full_detail"})
      */
     private string $fullName;
+
+    /**
+     * @ORM\Column(name="address", type="text", nullable=false)
+     *
+     * @Groups({"list", "full_detail"})
+     */
+    private string $address;
+
+    /**
+     * @ORM\Column(name="house_number", type="string", length=255, nullable=false)
+     *
+     * @Groups({"list", "full_detail"})
+     */
+    private string $houseNumber;
 
     public function getId(): int
     {
@@ -66,12 +80,12 @@ class Account implements AccountInterface
         return $this->authCode;
     }
 
-    public function getZipCode(): ?string
+    public function getZipCode(): string
     {
         return $this->zipCode;
     }
 
-    public function setZipCode(?string $zipCode = null): void
+    public function setZipCode(string $zipCode): void
     {
         $this->zipCode = $zipCode;
     }
@@ -84,5 +98,25 @@ class Account implements AccountInterface
     public function setFullName(string $fullName): void
     {
         $this->fullName = $fullName;
+    }
+
+    public function getAddress(): string
+    {
+        return $this->address;
+    }
+
+    public function setAddress(string $address): void
+    {
+        $this->address = $address;
+    }
+
+    public function getHouseNumber(): string
+    {
+        return $this->houseNumber;
+    }
+
+    public function setHouseNumber(string $houseNumber): void
+    {
+        $this->houseNumber = $houseNumber;
     }
 }

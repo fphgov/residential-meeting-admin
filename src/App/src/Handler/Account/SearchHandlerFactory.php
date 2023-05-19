@@ -4,23 +4,21 @@ declare(strict_types=1);
 
 namespace App\Handler\Account;
 
-use App\InputFilter\AccountCheckFilter;
+use App\InputFilter\AccountSearchFilter;
 use App\Service\AccountServiceInterface;
-use App\Service\VoteServiceInterface;
 use Laminas\InputFilter\InputFilterPluginManager;
 use Psr\Container\ContainerInterface;
 
-final class CheckHandlerFactory
+final class SearchHandlerFactory
 {
-    public function __invoke(ContainerInterface $container): CheckHandler
+    public function __invoke(ContainerInterface $container): SearchHandler
     {
         /** @var InputFilterPluginManager $pluginManager */
         $pluginManager = $container->get(InputFilterPluginManager::class);
-        $inputFilter   = $pluginManager->get(AccountCheckFilter::class);
+        $inputFilter   = $pluginManager->get(AccountSearchFilter::class);
 
-        return new CheckHandler(
+        return new SearchHandler(
             $container->get(AccountServiceInterface::class),
-            $container->get(VoteServiceInterface::class),
             $inputFilter
         );
     }

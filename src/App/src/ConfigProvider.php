@@ -36,14 +36,14 @@ class ConfigProvider
             ],
             'delegators' => [],
             'factories'  => [
-                Handler\Account\CheckHandler::class           => Handler\Account\CheckHandlerFactory::class,
-                Handler\Setting\GetHandler::class             => Handler\Setting\GetHandlerFactory::class,
-                Service\AccountServiceInterface::class        => Service\AccountServiceFactory::class,
-                Service\MailQueueServiceInterface::class      => Service\MailQueueServiceFactory::class,
-                Service\UserServiceInterface::class           => Service\UserServiceFactory::class,
-                Service\MailServiceInterface::class           => Service\MailServiceFactory::class,
-                Helper\MailContentHelper::class               => Helper\MailContentHelperFactory::class,
-                Helper\MailContentRawHelper::class            => Helper\MailContentRawHelperFactory::class,
+                Handler\Account\SearchHandler::class     => Handler\Account\SearchHandlerFactory::class,
+                Handler\Setting\GetHandler::class        => Handler\Setting\GetHandlerFactory::class,
+                Service\AccountServiceInterface::class   => Service\AccountServiceFactory::class,
+                Service\MailQueueServiceInterface::class => Service\MailQueueServiceFactory::class,
+                Service\UserServiceInterface::class      => Service\UserServiceFactory::class,
+                Service\MailServiceInterface::class      => Service\MailServiceFactory::class,
+                Helper\MailContentHelper::class          => Helper\MailContentHelperFactory::class,
+                Helper\MailContentRawHelper::class       => Helper\MailContentRawHelperFactory::class,
             ],
         ];
     }
@@ -52,10 +52,9 @@ class ConfigProvider
     {
         return [
             'factories'  => [
-                InputFilter\AccountCheckFilter::class => InputFilter\AccountCheckFilterFactory::class,
             ],
             'invokables' => [
-                InputFilter\ForgotAccountFirstCheckFilter::class => InputFilter\ForgotAccountFirstCheckFilter::class,
+                InputFilter\AccountSearchFilter::class => InputFilter\AccountSearchFilter::class,
             ],
         ];
     }

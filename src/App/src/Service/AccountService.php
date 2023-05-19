@@ -5,8 +5,6 @@ declare(strict_types=1);
 namespace App\Service;
 
 use App\Entity\Account;
-use App\Entity\AccountInterface;
-use App\Exception\AuthCodeNotFoundException;
 use App\Repository\AccountRepository;
 use App\Service\MailServiceInterface;
 use Doctrine\ORM\EntityManagerInterface;
@@ -29,16 +27,21 @@ final class AccountService implements AccountServiceInterface
         $this->accountRepository = $this->em->getRepository(Account::class);
     }
 
-    public function getAccount(string $authCode): AccountInterface
+    /** @var return \App\Entity\AccountInterface[] */
+    public function getAccounts(
+        string $zipCode,
+        string $name,
+        ?string $address,
+        ?string $houseNumber
+    ): array
     {
-        $account = $this->accountRepository->findOneBy([
-            'authCode' => $authCode,
-        ]);
+        $accounts = $this->accountRepository->findAccounts(
+            $zipCode,
+            $name,
+            $address,
+            $houseNumber
+        );
 
-        if (! $account) {
-            throw new AuthCodeNotFoundException('Unknow auth code ' . $authCode);
-        }
-
-        return $account;
+        return $accounts;
     }
 }

@@ -34,14 +34,12 @@ final class AccountService implements AccountServiceInterface
         string $zipCode,
         string $name,
         ?string $address,
-        ?string $houseNumber
     ): array
     {
         $accounts = $this->accountRepository->findAccounts(
             $zipCode,
             $name,
-            $address,
-            $houseNumber
+            $address
         );
 
         return $accounts;

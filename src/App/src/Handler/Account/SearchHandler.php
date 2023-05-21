@@ -37,7 +37,6 @@ final class SearchHandler implements RequestHandlerInterface
             $this->accountSearchFilter->getValues()['zip_code'],
             $this->accountSearchFilter->getValues()['name'],
             $this->accountSearchFilter->getValues()['address'],
-            $this->accountSearchFilter->getValues()['house_number'],
         );
 
         $normalizedAccounts = [];

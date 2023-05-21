@@ -40,6 +40,13 @@ class Account implements AccountInterface
     private string $zipCode;
 
     /**
+     * @ORM\Column(name="lastname", type="string", length=255, nullable=false)
+     *
+     * @Groups({"list", "full_detail"})
+     */
+    private string $lastname;
+
+    /**
      * @ORM\Column(name="full_name", type="string", length=255, nullable=false)
      *
      * @Groups({"list", "full_detail"})
@@ -110,13 +117,13 @@ class Account implements AccountInterface
         $this->address = $address;
     }
 
-    public function getHouseNumber(): string
+    public function getLastname(): string
     {
-        return $this->houseNumber;
+        return $this->lastname;
     }
 
-    public function setHouseNumber(string $houseNumber): void
+    public function setLastname(string $lastname): void
     {
-        $this->houseNumber = $houseNumber;
+        $this->lastname = $lastname;
     }
 }

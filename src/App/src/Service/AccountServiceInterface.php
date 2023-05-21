@@ -11,7 +11,6 @@ interface AccountServiceInterface
         string $zipCode,
         string $name,
         ?string $address,
-        ?string $houseNumber
     ): array;
 
     public function sendAccounts(string $id, string $email): void;

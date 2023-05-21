@@ -8,6 +8,7 @@ use App\Middleware\AuditMiddleware;
 use App\Service\MailServiceInterface;
 use Doctrine\ORM\EntityManagerInterface;
 use Psr\Container\ContainerInterface;
+use Pdf\Interfaces\PdfRender;
 
 final class AccountServiceFactory
 {
@@ -19,7 +20,8 @@ final class AccountServiceFactory
             $config,
             $container->get(EntityManagerInterface::class),
             $container->get(AuditMiddleware::class)->getLogger(),
-            $container->get(MailServiceInterface::class)
+            $container->get(MailServiceInterface::class),
+            $container->get(PdfRender::class)
         );
     }
 }

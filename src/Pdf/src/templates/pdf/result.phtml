@@ -1,0 +1,68 @@
+<html>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <style>
+        body,
+        p {
+            font-family: 'Arial';
+            font-weight: normal;
+            font-size: 12px;
+        }
+
+        p {
+            line-height: 12x;
+        }
+
+        b,
+        strong {
+            font-weight: bold;
+        }
+
+        .center {
+            text-align: center;
+        }
+
+        .human-id {
+            font-size: 32px;
+            font-weight: bold;
+            text-align: center;
+            margin: 16px 0;
+        }
+
+        .policy-text {
+            font-size: 10px;
+            line-height: 10x;
+            text-align: justify;
+        }
+
+        .page_break {
+            page-break-before: always;
+        }
+    </style>
+</head>
+
+<body>
+    <h1 class="center">Budapesti Lakógyűlés</h1>
+
+    <div style="height: 20px"></div>
+
+    <p class="center">Az első Budapesti Lakógyűlésen Ön a következő kód segítségével nyilváníthat véleményt:</p>
+
+    <table style="width: 100%;border-collapse: collapse;line-height: 16px;margin-top: 10px;margin-bottom: 10px;">
+        <tbody>
+            <tr>
+                <td></td>
+                <td>
+                    <div class="human-id"><?= $authCode; ?></div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+    <div style="height: 40px"></div>
+
+    <p style="text-align: justify;">Az adatkezelésre vonatkozó részletes tájékoztató a lakogyules.budapest.hu/adatkezeles weboldalon érhető el. Az adatok kezelése – a Fővárosi Önkormányzat feladatait érintő kérdésben – a fővárosi polgárok véleményének kikérésére vonatkozó közérdekű feladat végrehajtása érdekében szükséges. Az adatvédelmi tisztviselő elérhetőségei: (+361-999-9190, adatvedelmitisztviselo@budapest.hu). Ön tájékoztatást kérhet a személyes adatai kezeléséről, kérheti személyes adatainak helyesbítését, törlését, személyes adatai kezelésének korlátozását, tiltakozhat a személyes adatainak kezelése ellen, az illetékes szerveknél jogorvoslattal élhet.</p>
+</body>
+
+</html>

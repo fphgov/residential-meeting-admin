@@ -24,4 +24,10 @@ return static function (
         // App\Middleware\UserMiddleware::class,
         App\Handler\Account\SendHandler::class
     ], 'admin.api.account.send');
+
+    $app->post('/admin/api/account/print', [
+        // Jwt\Handler\JwtAuthMiddleware::class,
+        // App\Middleware\UserMiddleware::class,
+        App\Handler\Account\PrintHandler::class
+    ], 'admin.api.account.print');
 };

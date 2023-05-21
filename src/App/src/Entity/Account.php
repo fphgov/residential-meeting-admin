@@ -60,13 +60,6 @@ class Account implements AccountInterface
      */
     private string $address;
 
-    /**
-     * @ORM\Column(name="house_number", type="string", length=255, nullable=false)
-     *
-     * @Groups({"list", "full_detail"})
-     */
-    private string $houseNumber;
-
     public function getId(): int
     {
         return $this->id;

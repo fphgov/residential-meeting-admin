@@ -28,7 +28,7 @@ class Account implements AccountInterface
     /**
      * @ORM\Column(name="auth_code", type="string", length=14)
      *
-     * @Groups({"full_detail"})
+     * @Groups({"list", "full_detail"})
      */
     private string $authCode;
 
@@ -59,6 +59,55 @@ class Account implements AccountInterface
      * @Groups({"list", "full_detail"})
      */
     private string $address;
+
+    /**
+     * @ORM\Column(name="public_space", type="text", nullable=true)
+     *
+     * @Groups({"list", "full_detail"})
+     */
+    private ?string $publicSpace;
+
+    /**
+     * @ORM\Column(name="nature", type="string", length=255, nullable=true)
+     *
+     * @Groups({"list", "full_detail"})
+     */
+    private ?string $nature;
+
+    /**
+     * @ORM\Column(name="house_number", type="string", length=255, nullable=true)
+     *
+     * @Groups({"list", "full_detail"})
+     */
+    private ?string $houseNumber;
+
+    /**
+     * @ORM\Column(name="building", type="string", length=255, nullable=true)
+     *
+     * @Groups({"list", "full_detail"})
+     */
+    private ?string $building;
+
+    /**
+     * @ORM\Column(name="stairway", type="string", length=255, nullable=true)
+     *
+     * @Groups({"list", "full_detail"})
+     */
+    private ?string $stairway;
+
+    /**
+     * @ORM\Column(name="floor", type="string", length=255, nullable=true)
+     *
+     * @Groups({"list", "full_detail"})
+     */
+    private ?string $floor;
+
+    /**
+     * @ORM\Column(name="door", type="string", length=255, nullable=true)
+     *
+     * @Groups({"list", "full_detail"})
+     */
+    private ?string $door;
 
     public function getId(): int
     {
@@ -118,5 +167,40 @@ class Account implements AccountInterface
     public function setLastname(string $lastname): void
     {
         $this->lastname = $lastname;
+    }
+
+    public function getPublicSpace(): ?string
+    {
+        return $this->publicSpace;
+    }
+
+    public function getNature(): ?string
+    {
+        return $this->nature;
+    }
+
+    public function getHouseNumber(): ?string
+    {
+        return $this->houseNumber;
+    }
+
+    public function getBuilding(): ?string
+    {
+        return $this->building;
+    }
+
+    public function getStairway(): ?string
+    {
+        return $this->stairway;
+    }
+
+    public function getFloor(): ?string
+    {
+        return $this->floor;
+    }
+
+    public function getDoor(): ?string
+    {
+        return $this->door;
     }
 }

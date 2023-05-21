@@ -19,7 +19,9 @@ final class AccountRepository extends EntityRepository
 
         $qb
             ->where('a.zipCode = :zipCode')
-            ->andWhere('a.lastname LIKE :name')
+            ->andWhere(
+                $qb->expr()->like('a.lastname', ':name')
+            )
             ->setParameters([
                 'zipCode'     => $zipCode,
                 'name'        => '%' . $name . '%',
@@ -30,6 +32,8 @@ final class AccountRepository extends EntityRepository
                 ->andWhere('a.address LIKE :address')
                 ->setParameter('address', '%' . $address . '%');
         }
+
+        $qb->addOrderBy('a.fullName', 'ASC');
 
         return $qb->getQuery()->getResult();
     }

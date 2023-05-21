@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Handler\Account;
 
 use App\Service\AccountServiceInterface;
+use App\Exception\TooManyResultsException;
 use Laminas\Diactoros\Response\JsonResponse;
 use Laminas\InputFilter\InputFilterInterface;
 use Psr\Http\Message\ResponseInterface;
@@ -33,11 +34,17 @@ final class SearchHandler implements RequestHandlerInterface
             ], 422);
         }
 
-        $accounts = $this->accountService->getAccounts(
-            $this->accountSearchFilter->getValues()['zip_code'],
-            $this->accountSearchFilter->getValues()['name'],
-            $this->accountSearchFilter->getValues()['address'],
-        );
+        try {
+            $accounts = $this->accountService->getAccounts(
+                $this->accountSearchFilter->getValues()['zip_code'],
+                $this->accountSearchFilter->getValues()['name'],
+                $this->accountSearchFilter->getValues()['address'],
+            );
+        } catch (TooManyResultsException $e) {
+            return new JsonResponse([
+                'error' => 'Keresés a rendszer által elutasítva. A találatok száma több, mint 50. Pontosíts a keresésen.'
+            ], 422);
+        }
 
         $normalizedAccounts = [];
 

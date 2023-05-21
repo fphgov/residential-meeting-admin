@@ -9,6 +9,7 @@ use App\Entity\NotificationInterface;
 use App\Model\SimpleNotification;
 use App\Repository\AccountRepository;
 use App\Service\MailServiceInterface;
+use App\Exception\TooManyResultsException;
 use Doctrine\ORM\EntityManagerInterface;
 use Laminas\Log\Logger;
 
@@ -41,6 +42,10 @@ final class AccountService implements AccountServiceInterface
             $name,
             $address
         );
+
+        if (count($accounts) >= 50) {
+            throw new TooManyResultsException('Too many result in account query');
+        }
 
         return $accounts;
     }

@@ -76,7 +76,7 @@ env:
   - name: DB_HOSTNAME
     value: mariadb
   - name: DB_PORT
-    value: "3307"
+    value: "3308"
   - name: DB_DATABASE
     value: residential_meeting_admin
   - name: DB_USER

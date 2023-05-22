@@ -33,8 +33,14 @@ class AccountSendFilter extends InputFilter
 
         $this->add([
             'name'        => 'email',
-            'allow_empty' => true,
+            'allow_empty' => false,
             'validators'  => [
+                new Validator\NotEmpty([
+                    'messages' => [
+                        Validator\NotEmpty::IS_EMPTY => 'Kötelező a mező kitöltése',
+                        Validator\NotEmpty::INVALID  => 'Hibás mező tipus',
+                    ],
+                ]),
                 new Validator\EmailAddress([
                     'messages' => [
                         Validator\EmailAddress::INVALID            => "Érvénytelen típus megadva. Szöveg adható meg.",

@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Middleware;
 
-use App\Service\UserServiceInterface;
+use Doctrine\ORM\EntityManagerInterface;
 use Psr\Container\ContainerInterface;
 
 class UserMiddlewareFactory
@@ -12,7 +12,7 @@ class UserMiddlewareFactory
     public function __invoke(ContainerInterface $container): UserMiddleware
     {
         return new UserMiddleware(
-            $container->get(UserServiceInterface::class)
+            $container->get(EntityManagerInterface::class)
         );
     }
 }

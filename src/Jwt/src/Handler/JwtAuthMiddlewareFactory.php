@@ -21,7 +21,7 @@ class JwtAuthMiddlewareFactory
         }
 
         $auth = new JwtAuthentication([
-            "secure"    => getenv('NODE_ENV') !== 'development',
+            "secure"    => getenv('NODE_ENV') !== 'development' && $config['jwt']['auth']['secret'],
             "secret"    => $config['jwt']['auth']['secret'],
             "attribute" => JwtAuthMiddleware::class,
             "error" => function ($response, $arguments) {

@@ -34,7 +34,7 @@ env:
   - name: SMTP_PORT
     value: "25"
   - name: SMTP_CONNECTION_CLASS
-    value: plain
+    value: login
   - name: SMTP_CONNECTION_CONFIG_USERNAME
     value: "INFORMATIKA\\hirlevel"
   - name: SMTP_CONNECTION_CONFIG_PASSWORD
@@ -109,6 +109,8 @@ env:
     value: "1"
   - name: JWT_SECRET
     value: _jwt_secret_
+  - name: JWT_SECURE
+    value: "false"
 
 imagePullSecrets: []
 nameOverride: ""

@@ -84,6 +84,7 @@ final class AccountService implements AccountServiceInterface
         $tplData = [
             'infoMunicipality' => $this->config['app']['municipality'],
             'infoEmail'        => $this->config['app']['email'],
+            'appURL'           => $this->config['app']['url'],
             'authCode'         => $account->getAuthCode(),
         ];
 

@@ -6,6 +6,7 @@ namespace App\Handler\Account;
 
 use App\Service\AccountServiceInterface;
 use App\Exception\TooManyResultsException;
+use App\Middleware\UserMiddleware;
 use Laminas\Diactoros\Response\JsonResponse;
 use Laminas\InputFilter\InputFilterInterface;
 use Psr\Http\Message\ResponseInterface;
@@ -24,6 +25,8 @@ final class SearchHandler implements RequestHandlerInterface
 
     public function handle(ServerRequestInterface $request): ResponseInterface
     {
+        $user = $request->getAttribute(UserMiddleware::class);
+
         $body = $request->getParsedBody();
 
         $this->accountSearchFilter->setData($body);
@@ -36,6 +39,7 @@ final class SearchHandler implements RequestHandlerInterface
 
         try {
             $accounts = $this->accountService->getAccounts(
+                $user,
                 $this->accountSearchFilter->getValues()['zip_code'],
                 $this->accountSearchFilter->getValues()['name'],
                 $this->accountSearchFilter->getValues()['address'],

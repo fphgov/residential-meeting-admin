@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Handler\Account;
 
 use App\Service\AccountServiceInterface;
+use App\Middleware\UserMiddleware;
 use DateTime;
 use Dompdf\Dompdf;
 use Laminas\Diactoros\Stream;
@@ -34,6 +35,8 @@ final class PrintHandler implements RequestHandlerInterface
 
     public function handle(ServerRequestInterface $request): ResponseInterface
     {
+        $user = $request->getAttribute(UserMiddleware::class);
+
         $body = $request->getParsedBody();
 
         $this->accountPrintFilter->setData($body);
@@ -44,7 +47,8 @@ final class PrintHandler implements RequestHandlerInterface
             ], 422);
         }
 
-        $pdf = $this->accountService->printAccounts(
+        $pdf = $this->accountService->printAccount(
+            $user,
             $this->accountPrintFilter->getValues()['id'],
         );
 

@@ -7,11 +7,12 @@
         p {
             font-family: 'Arial';
             font-weight: normal;
-            font-size: 12px;
+            font-size: 16px;
         }
 
-        p {
-            line-height: 12x;
+        h1 {
+            font-size: 30px;
+            text-transform: uppercase;
         }
 
         b,
@@ -23,17 +24,16 @@
             text-align: center;
         }
 
-        .human-id {
-            font-size: 32px;
+        .auth-code {
+            font-size: 36px;
             font-weight: bold;
             text-align: center;
             margin: 16px 0;
         }
 
         .policy-text {
-            font-size: 10px;
-            line-height: 10x;
-            text-align: justify;
+            font-size: 12px;
+            text-align: left;
         }
 
         .page_break {
@@ -43,18 +43,25 @@
 </head>
 
 <body>
-    <h1 class="center">Budapesti Lakógyűlés</h1>
+
+    <div class="center">
+        <img src='data:image/png;base64,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' height="80" width="91" />
+    </div>
+
+    <h1 class="center">Budapesti<br>Lakógyűlés</h1>
 
     <div style="height: 20px"></div>
 
     <p class="center">Sikeresen igényelted az egyedi azonosító kódodat, már szavazhatsz is az első Budapesti Lakógyűlésen:</p>
 
-    <table style="width: 100%;border-collapse: collapse;line-height: 16px;margin-top: 10px;margin-bottom: 10px;">
+    <div style="height: 20px"></div>
+
+    <table style="width: 100%;border-collapse: collapse;margin-top: 10px;margin-bottom: 10px;border: 1px dashed black;">
         <tbody>
             <tr>
                 <td></td>
                 <td>
-                    <div class="human-id"><?= $authCode; ?></div>
+                    <div class="auth-code"><?= $authCode; ?></div>
                 </td>
             </tr>
         </tbody>
@@ -62,11 +69,13 @@
 
     <div style="height: 20px"></div>
 
-    <p>Dönts te is a Budapestet érintő kérdésekben a lakogyules.budapest.hu oldalon!</p>
+    <h2 class="center">Dönts te is a Budapestet érintő kérdésekben a <u>lakogyules.budapest.hu</u> oldalon!</h2>
 
-    <div style="height: 40px"></div>
+    <div style="height: 300px"></div>
 
-    <p style="text-align: justify;">Az adatkezelésre vonatkozó részletes tájékoztató a lakogyules.budapest.hu/adatkezeles weboldalon érhető el. Az adatok kezelése – a Fővárosi Önkormányzat feladatait érintő kérdésben – a fővárosi polgárok véleményének kikérésére vonatkozó közérdekű feladat végrehajtása érdekében szükséges. Az adatvédelmi tisztviselő elérhetőségei: (+361-999-9190, adatvedelmitisztviselo@budapest.hu). Ön tájékoztatást kérhet a személyes adatai kezeléséről, kérheti személyes adatainak helyesbítését, törlését, személyes adatai kezelésének korlátozását, tiltakozhat a személyes adatainak kezelése ellen, az illetékes szerveknél jogorvoslattal élhet.</p>
+    <hr style="height: 0px;border-bottom: 0;margin-bottom: 22px;">
+
+    <p class="policy-text">Az adatkezelésre vonatkozó részletes tájékoztató a <u>lakogyules.budapest.hu/adatkezeles</u> weboldalon érhető el. Az adatok kezelése – a Fővárosi Önkormányzat feladatait érintő kérdésben – a fővárosi polgárok véleményének kikérésére vonatkozó közérdekű feladat végrehajtása érdekében szükséges. Az adatvédelmi tisztviselő elérhetőségei: (+361-999-9190, <u>adatvedelmitisztviselo@budapest.hu</u>). Ön tájékoztatást kérhet a személyes adatai kezeléséről, kérheti személyes adatainak helyesbítését, törlését, személyes adatai kezelésének korlátozását, tiltakozhat a személyes adatainak kezelése ellen, az illetékes szerveknél jogorvoslattal élhet.</p>
 </body>
 
 </html>

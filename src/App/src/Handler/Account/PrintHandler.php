@@ -16,6 +16,7 @@ use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 use Psr\Http\Server\RequestHandlerInterface;
 
+use function base64_encode;
 use function ob_start;
 use function ob_get_clean;
 use function fopen;
@@ -83,7 +84,9 @@ final class PrintHandler implements RequestHandlerInterface
 
         $stream = fopen('php://memory', 'wb+');
 
-        fputs($stream, $pdf->output());
+        $base64Pdf = base64_encode($pdf->output());
+
+        fputs($stream, $base64Pdf);
 
         rewind($stream);
 

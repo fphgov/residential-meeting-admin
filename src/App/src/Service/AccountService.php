@@ -85,7 +85,7 @@ final class AccountService implements AccountServiceInterface
         $account = $this->accountRepository->find($id);
 
         if ($account) {
-            return $this->printAuthCodeEmail($user, $account);
+            return $this->printAuthCodeEmail($account, $user);
         }
 
         return null;
@@ -113,8 +113,8 @@ final class AccountService implements AccountServiceInterface
     }
 
     private function printAuthCodeEmail(
-        UserInterface $user,
-        Account $account
+        Account $account,
+        UserInterface $user
     ): Dompdf
     {
         $tplData = [

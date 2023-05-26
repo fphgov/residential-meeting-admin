@@ -12,15 +12,16 @@ final class AccountRepository extends EntityRepository
     public function findAccounts(
         string $zipCode,
         string $name,
-        ?string $address,
-        ?string $houseNumber
+        ?string $address
     ): array
     {
         $qb = $this->createQueryBuilder('a');
 
         $qb
             ->where('a.zipCode = :zipCode')
-            ->andWhere('a.fullName LIKE :name')
+            ->andWhere(
+                $qb->expr()->like('a.lastname', ':name')
+            )
             ->setParameters([
                 'zipCode'     => $zipCode,
                 'name'        => '%' . $name . '%',
@@ -32,11 +33,7 @@ final class AccountRepository extends EntityRepository
                 ->setParameter('address', '%' . $address . '%');
         }
 
-        if ($houseNumber !== null) {
-            $qb
-                ->andWhere('a.houseNumber LIKE :houseNumber')
-                ->setParameter('houseNumber', '%' . $houseNumber . '%');
-        }
+        $qb->addOrderBy('a.fullName', 'ASC');
 
         return $qb->getQuery()->getResult();
     }

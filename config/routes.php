@@ -14,14 +14,20 @@ return static function (
     ], 'admin.api.login');
 
     $app->post('/admin/api/account/search', [
-        // Jwt\Handler\JwtAuthMiddleware::class,
-        // App\Middleware\UserMiddleware::class,
+        Jwt\Handler\JwtAuthMiddleware::class,
+        App\Middleware\UserMiddleware::class,
         App\Handler\Account\SearchHandler::class
     ], 'admin.api.account.search');
 
     $app->post('/admin/api/account/send', [
-        // Jwt\Handler\JwtAuthMiddleware::class,
-        // App\Middleware\UserMiddleware::class,
+        Jwt\Handler\JwtAuthMiddleware::class,
+        App\Middleware\UserMiddleware::class,
         App\Handler\Account\SendHandler::class
     ], 'admin.api.account.send');
+
+    $app->post('/admin/api/account/print', [
+        Jwt\Handler\JwtAuthMiddleware::class,
+        App\Middleware\UserMiddleware::class,
+        App\Handler\Account\PrintHandler::class
+    ], 'admin.api.account.print');
 };

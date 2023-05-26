@@ -38,8 +38,10 @@ class ConfigProvider
             'factories'  => [
                 Handler\Account\SearchHandler::class     => Handler\Account\SearchHandlerFactory::class,
                 Handler\Account\SendHandler::class       => Handler\Account\SendHandlerFactory::class,
+                Handler\Account\PrintHandler::class      => Handler\Account\PrintHandlerFactory::class,
                 Handler\Setting\GetHandler::class        => Handler\Setting\GetHandlerFactory::class,
                 Service\AccountServiceInterface::class   => Service\AccountServiceFactory::class,
+                Service\AuditLogServiceInterface::class  => Service\AuditLogServiceFactory::class,
                 Service\MailQueueServiceInterface::class => Service\MailQueueServiceFactory::class,
                 Service\UserServiceInterface::class      => Service\UserServiceFactory::class,
                 Service\MailServiceInterface::class      => Service\MailServiceFactory::class,

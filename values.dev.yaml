@@ -34,7 +34,7 @@ env:
   - name: SMTP_PORT
     value: "25"
   - name: SMTP_CONNECTION_CLASS
-    value: plain
+    value: login
   - name: SMTP_CONNECTION_CONFIG_USERNAME
     value: "INFORMATIKA\\hirlevel"
   - name: SMTP_CONNECTION_CONFIG_PASSWORD
@@ -54,7 +54,7 @@ env:
   - name: APP_PHONE
     value: 06-1-000-0001
   - name: APP_URL
-    value: https://lakogyules.budapest.hu
+    value: https://lakogyules-szavazas.dev.intra.fph.hu
   - name: RECAPTCHA_SECRET
     value: _from_google_
   - name: APP_STAT_TOKEN
@@ -76,11 +76,11 @@ env:
   - name: DB_HOSTNAME
     value: mariadb
   - name: DB_PORT
-    value: "3307"
+    value: "3308"
   - name: DB_DATABASE
-    value: residential_meeting
+    value: residential_meeting_admin
   - name: DB_USER
-    value: residential_meeting
+    value: residential_meeting_admin
   - name: DB_CHARSET
     value: utf8mb4
   - name: APP_NOTIFICATION_FREQUENCY
@@ -97,6 +97,20 @@ env:
     value: /var/www/html/public/email
   - name: NODE_ENV
     value: production
+  - name: JWT_ISS
+    value: https://lakogyules-szavazas.dev.intra.fph.hu
+  - name: JWT_AUD
+    value: https://lakogyules-szavazas.dev.intra.fph.hu
+  - name: JWT_JTI
+    value: _jwt_jti_
+  - name: JWT_NBF
+    value: "0"
+  - name: JWT_EXP
+    value: "1"
+  - name: JWT_SECRET
+    value: _jwt_secret_
+  - name: JWT_SECURE
+    value: "false"
 
 imagePullSecrets: []
 nameOverride: ""

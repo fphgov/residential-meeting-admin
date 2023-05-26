@@ -70,8 +70,7 @@ class TokenHandler implements RequestHandlerInterface
         }
 
         $userData = [
-            'firstname' => $user->getFirstname(),
-            'lastname'  => $user->getLastname(),
+            'id'        => $user->getId(),
             'email'     => $user->getEmail(),
             'role'      => $user->getRole(),
         ];

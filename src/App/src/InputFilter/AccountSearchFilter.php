@@ -66,24 +66,6 @@ class AccountSearchFilter extends InputFilter
                 new Filter\StringToUpper(),
             ],
         ]);
-
-        $this->add([
-            'name'        => 'house_number',
-            'allow_empty' => true,
-            'validators'  => [
-                new Validator\NotEmpty([
-                    'messages' => [
-                        Validator\NotEmpty::IS_EMPTY => 'Kötelező a mező kitöltése',
-                        Validator\NotEmpty::INVALID  => 'Hibás mező tipus',
-                    ],
-                ]),
-            ],
-            'filters'     => [
-                new Filter\StringTrim(),
-                new Filter\StripTags(),
-                new Filter\StringToUpper(),
-            ],
-        ]);
     }
 }
 /** phpcs:enable */

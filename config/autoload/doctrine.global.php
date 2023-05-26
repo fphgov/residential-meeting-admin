@@ -5,14 +5,6 @@ declare(strict_types=1);
 use DoctrineExtensions\Query\Mysql;
 use Ramsey\Uuid\Doctrine\UuidType;
 
-$rtel = new \Doctrine\ORM\Tools\ResolveTargetEntityListener;
-
-$rtel->addResolveTargetEntity(App\Entity\CampaignInterface::class, App\Entity\Campaign::class, []);
-$rtel->addResolveTargetEntity(App\Entity\MailQueueInterface::class, App\Entity\MailQueue::class, []);
-$rtel->addResolveTargetEntity(App\Entity\SettingsInterface::class, App\Entity\Settings::class, []);
-$rtel->addResolveTargetEntity(App\Entity\UserInterface::class, App\Entity\User::class, []);
-$rtel->addResolveTargetEntity(App\Entity\VoteInterface::class, App\Entity\Vote::class, []);
-
 return [
     'doctrine' => [
         'types'            => [
@@ -20,7 +12,7 @@ return [
         ],
         'configuration' => [
             'orm_default' => [
-                'string_functions'  => [
+                'string_functions' => [
                     'IF'           => Mysql\IfElse::class,
                     'GROUP_CONCAT' => Mysql\GroupConcat::class,
                     'DATE_FORMAT'  => Mysql\DateFormat::class,
@@ -41,13 +33,6 @@ return [
                     'url'           => 'mysql://'. getenv('DB_USER') .':'. getenv('DB_PASSWORD') .'@'. getenv('DB_HOSTNAME') . ':' . (int)str_replace(['"',"'"], "", getenv('DB_PORT')) . '/' . getenv('DB_DATABASE'),
                     'charset'       => getenv('DB_CHARSET'),
                     'configuration' => []
-                ],
-            ],
-        ],
-        'event_manager' => [
-            'orm_default' => [
-                'subscribers' => [
-                    $rtel,
                 ],
             ],
         ],

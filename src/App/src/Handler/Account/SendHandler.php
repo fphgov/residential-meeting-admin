@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Handler\Account;
 
 use App\Service\AccountServiceInterface;
+use App\Middleware\UserMiddleware;
 use Laminas\Diactoros\Response\JsonResponse;
 use Laminas\InputFilter\InputFilterInterface;
 use Psr\Http\Message\ResponseInterface;
@@ -23,6 +24,8 @@ final class SendHandler implements RequestHandlerInterface
 
     public function handle(ServerRequestInterface $request): ResponseInterface
     {
+        $user = $request->getAttribute(UserMiddleware::class);
+
         $body = $request->getParsedBody();
 
         $this->accountSendFilter->setData($body);
@@ -33,7 +36,8 @@ final class SendHandler implements RequestHandlerInterface
             ], 422);
         }
 
-        $this->accountService->sendAccounts(
+        $this->accountService->sendAccount(
+            $user,
             $this->accountSendFilter->getValues()['id'],
             $this->accountSendFilter->getValues()['email'],
         );

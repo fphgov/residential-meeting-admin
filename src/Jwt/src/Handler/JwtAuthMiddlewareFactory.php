@@ -21,10 +21,19 @@ class JwtAuthMiddlewareFactory
         }
 
         $auth = new JwtAuthentication([
-            "secure"    => getenv('NODE_ENV') !== 'development',
-            "relaxed"   => ["localhost"],
+            "secure"    => getenv('NODE_ENV') !== 'development' && $config['jwt']['secure'],
             "secret"    => $config['jwt']['auth']['secret'],
             "attribute" => JwtAuthMiddleware::class,
+            "error" => function ($response, $arguments) {
+                $data["status"] = "error";
+                $data["message"] = $arguments["message"];
+
+                $response->getBody()->write(
+                    json_encode($data, JSON_UNESCAPED_SLASHES | JSON_PRETTY_PRINT)
+                );
+
+                return $response->withHeader("Content-Type", "application/json");
+            }
         ]);
 
         return new JwtAuthMiddleware(

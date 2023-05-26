@@ -11,6 +11,7 @@ return [
         'exp' => getenv('JWT_EXP'),
         'auth' => [
             'secret' => getenv('JWT_SECRET'),
-        ]
+        ],
+        'secure' => strval(getenv('JWT_SECURE')) === "true",
     ]
 ];

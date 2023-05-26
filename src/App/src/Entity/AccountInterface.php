@@ -24,7 +24,7 @@ interface AccountInterface extends EntitySimpleInterface
 
     public function setAddress(string $address): void;
 
-    public function getHouseNumber(): string;
+    public function getLastname(): string;
 
-    public function setHouseNumber(string $houseNumber): void;
+    public function setLastname(string $houseNumber): void;
 }

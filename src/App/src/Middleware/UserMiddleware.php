@@ -4,7 +4,9 @@ declare(strict_types=1);
 
 namespace App\Middleware;
 
-use App\Service\UserServiceInterface;
+use App\Entity\User;
+use App\Repository\UserRepository;
+use Doctrine\ORM\EntityManagerInterface;
 use Jwt\Handler\JwtAuthMiddleware;
 use Mezzio\Authentication\DefaultUser;
 use Mezzio\Authentication\UserInterface;
@@ -15,12 +17,13 @@ use Psr\Http\Server\RequestHandlerInterface;
 
 class UserMiddleware implements MiddlewareInterface
 {
-    /** @var UserServiceInterface */
-    private $userService;
+    private UserRepository $userRepository;
 
-    public function __construct(UserServiceInterface $userService)
-    {
-        $this->userService = $userService;
+    public function __construct(
+        private EntityManagerInterface $em
+    ) {
+        $this->em             = $em;
+        $this->userRepository = $this->em->getRepository(User::class);
     }
 
     public function process(
@@ -29,7 +32,7 @@ class UserMiddleware implements MiddlewareInterface
     ): ResponseInterface {
         $token = $request->getAttribute(JwtAuthMiddleware::class);
 
-        $user = $this->userService->getRepository()->findOneBy([
+        $user = $this->userRepository->findOneBy([
             'email' => $token['user']->email,
         ]);
 

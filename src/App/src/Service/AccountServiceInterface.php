@@ -27,4 +27,10 @@ interface AccountServiceInterface
         UserInterface $user,
         string $id
     ): ?Dompdf;
+
+    public function sendRejectNotification(
+        UserInterface $user,
+        string $type,
+        string $email
+    ): void;
 }

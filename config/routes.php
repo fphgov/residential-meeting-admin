@@ -30,4 +30,10 @@ return static function (
         App\Middleware\UserMiddleware::class,
         App\Handler\Account\PrintHandler::class
     ], 'admin.api.account.print');
+
+    $app->post('/admin/api/account/reject', [
+        Jwt\Handler\JwtAuthMiddleware::class,
+        App\Middleware\UserMiddleware::class,
+        App\Handler\Account\RejectHandler::class
+    ], 'admin.api.account.reject');
 };

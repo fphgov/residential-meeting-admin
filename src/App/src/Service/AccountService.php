@@ -80,6 +80,13 @@ final class AccountService implements AccountServiceInterface
         }
     }
 
+    public function sendRejectNotification(UserInterface $user, string $type, string $email): void
+    {
+        $notification = new SimpleNotification("0", $email);
+
+        $this->sendRejectEmail($user, $notification, $type);
+    }
+
     public function printAccount(UserInterface $user, string $id): ?Dompdf
     {
         $account = $this->accountRepository->find($id);
@@ -133,5 +140,21 @@ final class AccountService implements AccountServiceInterface
         );
 
         return $dompdf;
+    }
+
+    private function sendRejectEmail(
+        UserInterface $user,
+        NotificationInterface $notification,
+        string $type
+    ): void {
+        $tplData = [
+            'infoMunicipality' => $this->config['app']['municipality'],
+            'infoEmail'        => $this->config['app']['email'],
+            'appURL'           => $this->config['app']['url'],
+        ];
+
+        $this->mailService->send('reject-type-' . $type, $tplData, $notification);
+
+        $this->auditService->log($user, 'reject-email', null, $type);
     }
 }

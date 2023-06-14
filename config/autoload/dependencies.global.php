@@ -24,6 +24,7 @@ return [
 
             App\Middleware\AuditMiddleware::class => App\Middleware\AuditMiddlewareFactory::class,
             App\Middleware\UserMiddleware::class  => App\Middleware\UserMiddlewareFactory::class,
+            App\Middleware\StatisticsAccountMiddleware::class => App\Middleware\StatisticsAccountMiddlewareFactory::class,
 
             \Middlewares\Recaptcha::class => App\Middleware\RecaptchaMiddlewareFactory::class,
 

@@ -36,4 +36,9 @@ return static function (
         App\Middleware\UserMiddleware::class,
         App\Handler\Account\RejectHandler::class
     ], 'admin.api.account.reject');
+
+    $app->get('/admin/api/stat/mails', [
+        App\Middleware\StatisticsAccountMiddleware::class,
+        App\Handler\Stat\GetMailHandler::class
+    ], 'app.api.stat.mails');
 };

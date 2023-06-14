@@ -41,6 +41,7 @@ class ConfigProvider
                 Handler\Account\PrintHandler::class      => Handler\Account\PrintHandlerFactory::class,
                 Handler\Account\RejectHandler::class     => Handler\Account\RejectHandlerFactory::class,
                 Handler\Setting\GetHandler::class        => Handler\Setting\GetHandlerFactory::class,
+                Handler\Stat\GetMailHandler::class       => Handler\Stat\GetMailHandlerFactory::class,
                 Service\AccountServiceInterface::class   => Service\AccountServiceFactory::class,
                 Service\AuditLogServiceInterface::class  => Service\AuditLogServiceFactory::class,
                 Service\MailQueueServiceInterface::class => Service\MailQueueServiceFactory::class,
@@ -48,6 +49,8 @@ class ConfigProvider
                 Service\MailServiceInterface::class      => Service\MailServiceFactory::class,
                 Helper\MailContentHelper::class          => Helper\MailContentHelperFactory::class,
                 Helper\MailContentRawHelper::class       => Helper\MailContentRawHelperFactory::class,
+                Model\MailLogExportModel::class          => Model\MailLogExportModelFactory::class,
+                Middleware\StatisticsAccountMiddleware::class => Middleware\StatisticsAccountMiddlewareFactory::class,
             ],
         ];
     }
